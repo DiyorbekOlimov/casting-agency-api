@@ -471,7 +471,9 @@ git push heroku master
 7. Run migrations
 
 ```bash
-heroku run python manage.py db upgrade --app <YOUR_APP_NAME>
+heroku run python manage.py db init
+heroku run python manage.py db migrate
+heroku run python manage.py db upgrade
 ```
 
 8. Check the **server is working**
