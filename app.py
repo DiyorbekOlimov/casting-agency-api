@@ -29,11 +29,6 @@ def index():
 def get_actors():
     page = request.args.get('page', 1, type=int)
     actors = [actor.format() for actor in Actor.query.all()]
-    if len(actors) == 0:
-        return jsonify({
-            'success': False,
-            'message': 'actors not found'
-        })
     start = COUNT_PER_PAGE * (page - 1)
     end = start + COUNT_PER_PAGE
     selection = actors[start:end]
@@ -63,6 +58,7 @@ def get_actor(id):
 @requires_auth('post:actors')
 def post_actors():
     req = request.get_json()
+    if req is None: abort(400)
     name = req.get('name', None)
     age = req.get('age', None)
     gender = req.get('gender', None)
@@ -80,6 +76,7 @@ def post_actors():
 @requires_auth('patch:actors')
 def patch_actors(id):
     req = request.get_json()
+    if req is None: abort(400)
     actor = Actor.query.get(id)
     if actor is None: abort(404)
     actor.name = req.get('name', actor.name)
@@ -108,11 +105,6 @@ def delete_actors(id):
 def get_movies():
     page = request.args.get('page', 1, type=int)
     movies = [movie.format() for movie in Movie.query.all()]
-    if len(movies) == 0:
-        return jsonify({
-            'success': False,
-            'message': 'movies not found'
-        })
     start = COUNT_PER_PAGE * (page - 1)
     end = start + COUNT_PER_PAGE
     selection = movies[start:end]
@@ -141,6 +133,7 @@ def get_movie(id):
 @requires_auth('post:movies')
 def post_movies():
     req = request.get_json()
+    if req is None: abort(400)
     title = req.get('title', None)
     rdate = req.get('release_date', None)
     if title is None or rdate is None: abort(400)
@@ -158,6 +151,7 @@ def patch_movies(id):
     movie = Movie.query.get(id)
     if movie is None: abort(404)
     req = request.get_json()
+    if req is None: abort(400)
     title = req.get('title', movie.title)
     rdate = req.get('release_date', movie.release_date)
     movie.title = title
@@ -202,6 +196,14 @@ def not_found(e):
         'error': 404,
         'message': 'not found'
     }), 404
+
+@app.errorhandler(405)
+def method_not_allowed(e):
+    return jsonify({
+        'success': False,
+        'error': 405,
+        'message': 'method not allowed'
+    })
 
 @app.errorhandler(AuthError)
 def auth_error(ex):

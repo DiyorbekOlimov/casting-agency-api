@@ -1841,7 +1841,7 @@
 	"variable": [
 		{
 			"key": "URL",
-			"value": "http://127.0.0.1:5000"
+			"value": "https://diyorbek-casting-agency.herokuapp.com"
 		},
 		{
 			"key": "ASSISTANT_TOKEN",
@@ -1857,19 +1857,19 @@
 		},
 		{
 			"key": "New_Actor",
-			"value": "{\n    \"name\": \"John Doe\",\n    \"age\": 25,\n    \"gender\": \"male\"\n}"
+			"value": "{\"name\": \"John Doe\", \"age\": 25, \"gender\": \"male\"}"
 		},
 		{
 			"key": "Edit_Actor",
-			"value": "{\n    \"name\": \"John Doe\",\n    \"age\": 35\n}"
+			"value": "{\"name\": \"John Doe\", \"age\": 35}"
 		},
 		{
 			"key": "New_Movie",
-			"value": "{\n    \"title\": \"New Movie\",\n    \"release_date\": \"2022-01-01\"\n}"
+			"value": "{\"title\": \"New Movie\", \"release_date\": \"2022-01-01\"}"
 		},
 		{
 			"key": "Edit_Movie",
-			"value": "{\n    \"title\": \"Edited Movie\",\n    \"release_date\": \"2022-03-01\"\n}"
+			"value": "{\"title\": \"Edited Movie\", \"release_date\": \"2022-03-01\"}"
 		}
 	]
 }
