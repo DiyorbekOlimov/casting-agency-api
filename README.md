@@ -407,6 +407,8 @@ Response:
 
 I have written a test on python `unittest` framework for endpoints. It can be found in the `test_app.py` file
 
+Please change the variables in `settings.py` file to new token and database path
+
 Before running the test, create `capstone_test` database using Psql CLI:
 
 ```bash
